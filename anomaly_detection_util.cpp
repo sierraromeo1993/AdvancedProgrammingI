@@ -1,5 +1,5 @@
 /*
- * animaly_detection_util.cpp
+ * anomaly_detection_util.cpp
  *
  * Author: Ian Sanders 324707165
  */
@@ -99,8 +99,8 @@ Line linear_reg(Point** points, int size){
     float avgY = avg(arrY,size);
 
     float a =  cov(arrX,arrY,size)/var(arrX,size);
-    float c = cov(arrX,arrY,size);
     
+
 
     float b =  avgY -(a*avgX);
 
