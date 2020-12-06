@@ -10,6 +10,7 @@ class TimeSeries{
 
 	
 	vector<vector<string>> masterDataObj;
+	vector<vector<string>> masterDataFeature;
 
 	const char* csvFile;
 
@@ -21,9 +22,15 @@ public:
 
 	TimeSeries(const char* CSVfileName);
 
-	vector<vector<string>> parsebyObj();
+	void parsebyObj() ;
 
-	void parsebyFeature();
+	void parsebyFeature() ;
+
+	vector<vector<string>> getMasterDataFeatures() const;
+
+	vector<vector<string>> getMasterDataObj() const;
+
+
 
 
 };

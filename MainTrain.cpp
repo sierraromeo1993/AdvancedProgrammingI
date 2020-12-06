@@ -15,7 +15,7 @@ void generateTrainCSV(float a1,float b1, float a2, float b2){
 	out<<"A,B,C,D"<<endl;
 	Line ac(a1,b1);
 	Line bd(a2,b2);
-	for(int i=1;i<=100;i++){
+	for(int i=1;i<=3;i++){
 		float a=i;
 		float b=rand()%40;
 		out<<a<<","<<b<<","<<ac.f(a)-0.02+(rand()%40)/100.0f<<","<<bd.f(b)-0.02+(rand()%40)/100.0f<<endl;
@@ -70,7 +70,13 @@ int main(){
 
 	generateTrainCSV(a1,b1,a2,b2);
 	TimeSeries ts("trainFile1.csv");
-    ts.parsebyObj();
+	
+	SimpleAnomalyDetector ad;
+	ad.learnNormal(ts);
+	//vector<correlatedFeatures> cf=ad.getNormalModel();
+
+	//if(cf.size()!=2)
+		//cout<<"wrong size of correlated features (-40)"<<endl;
     
 	
 	return 0;

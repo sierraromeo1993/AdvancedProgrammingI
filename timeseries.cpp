@@ -10,12 +10,13 @@
 
 TimeSeries::TimeSeries(const char* CSVfileName){
     csvFile = std::move(CSVfileName);
+    parsebyObj();
+    parsebyFeature();
 
 }
 
-vector<vector<string>> TimeSeries::parsebyObj(){
+ void TimeSeries::parsebyObj() {
     
-
     std::ifstream ip(csvFile);
 
         string Time; string Alt_Height;string Air_Speed;string Heading;
@@ -33,15 +34,36 @@ vector<vector<string>> TimeSeries::parsebyObj(){
             vector<string> infoObj = {Time,Alt_Height,Air_Speed,Heading};
             masterDataObj.push_back(infoObj);   
         } 
-        return masterDataObj;
+        
         }
-
-void TimeSeries::parsebyFeature(){
-    vector<vector<string>> masterDataFeature;
-    
-
-    
+        
+void TimeSeries::parsebyFeature() {
+    vector<string> timeVec = {"A"};
+    vector<string> altVec = {"B"};
+    vector<string> airVec = {"C"};
+    vector<string> headingVec = {"D"};
+    for(vector<string> element:masterDataObj){
+        timeVec.push_back(element[0]);
+        altVec.push_back(element[1]);
+        airVec.push_back(element[2]);
+        headingVec.push_back(element[3]);
+    }
+    masterDataFeature = {timeVec,altVec,airVec,headingVec};
+ 
 };
+
+
+vector<vector<string>> TimeSeries::getMasterDataFeatures() const{
+    for(const vector<string>element:masterDataFeature){
+        for(string a: element) {
+            std::cout<<a<<std::endl;
+        }}
+    return masterDataFeature;
+}
+
+vector<vector<string>> TimeSeries::getMasterDataObj() const{
+    return masterDataObj;
+}
 
 
         
